@@ -1,0 +1,89 @@
+{
+  "global": {
+    "codefresh": {
+      "url": "https://icy-llamas-say.loca.lt",
+      "userToken": {
+        "secretKeyRef": {
+          "name": "codefresh-user-token",
+          "key": "token"
+        }
+      }
+    },
+    "runtime": {
+      "ingress": {
+        "className": "nginx-internal",
+        "enabled": true,
+        "hosts": [
+          "denys.rnd-sandbox.cf-infra.com"
+        ],
+        "protocol": "https"
+      },
+      "name": "codefresh",
+      "isConfigurationRuntime": true
+    },
+    "dash-dash": {
+      "underscore_underscore": "1.10.0"
+    }
+  },
+  "gitops-runtime": {
+    "app-proxy": {
+      "config": {
+        "cors": "http://local.codefresh.io"
+      }
+    },
+    "argo-workflows": {
+      "workflowDefaults": {
+        "spec": {
+          "podGC": {
+            "strategy": "OnWorkflowSuccess",
+            "deleteDelayDuration": "300s"
+          }
+        }
+      }
+    },
+    "argo-cd": {
+      "controller": {
+        "image": {
+          "repository": "quay.io/argoproj/argocd",
+          "tag": "v2.12.6"
+        }
+      },
+      "server": {
+        "image": {
+          "repository": "quay.io/argoproj/argocd",
+          "tag": "v2.12.6"
+        }
+      },
+      "repoServer": {
+        "image": {
+          "repository": "quay.io/argoproj/argocd",
+          "tag": "v2.12.6"
+        }
+      },
+      "applicationSet": {
+        "image": {
+          "repository": "quay.io/argoproj/argocd",
+          "tag": "v2.12.6"
+        }
+      },
+      "dex": {
+        "initImage": {
+          "repository": "quay.io/argoproj/argocd",
+          "tag": "v2.12.6"
+        }
+      },
+      "notifications": {
+        "image": {
+          "repository": "quay.io/argoproj/argocd",
+          "tag": "v2.12.6"
+        }
+      },
+      "redisSecretInit": {
+        "image": {
+          "repository": "quay.io/argoproj/argocd",
+          "tag": "v2.12.6"
+        }
+      }
+    }
+  }
+}
